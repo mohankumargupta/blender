@@ -1,0 +1,195 @@
+---
+// src/pages/index.astro
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blender Docs — Choose Your Experience</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        color: #f1f5f9;
+      }
+
+      .container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 640px;
+      }
+
+      .logo {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, #f59e0b, #f97316);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        font-size: 1.125rem;
+        color: #94a3b8;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      @media (min-width: 540px) {
+        .button-group {
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 0.75rem;
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        justify-content: center;
+        border: 1px solid transparent;
+      }
+
+      @media (min-width: 540px) {
+        .btn {
+          width: auto;
+        }
+      }
+
+      .btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .btn:hover::after {
+        opacity: 1;
+      }
+
+      .btn-custom {
+        background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        color: white;
+        border-color: rgba(99, 102, 241, 0.3);
+        box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+      }
+
+      .btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.45);
+      }
+
+      .btn-custom::after {
+        background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+      }
+
+      .btn-starlight {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border-color: rgba(16, 185, 129, 0.3);
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      }
+
+      .btn-starlight:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.45);
+      }
+
+      .btn-starlight::after {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      }
+
+      .btn-text {
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-arrow {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.25s ease;
+        font-size: 1.1rem;
+      }
+
+      .btn:hover .btn-arrow {
+        transform: translateX(3px);
+      }
+
+      .footer {
+        margin-top: 3rem;
+        font-size: 0.85rem;
+        color: #475569;
+      }
+
+      .footer a {
+        color: #94a3b8;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .footer a:hover {
+        color: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">🧊</div>
+      <h1>Blender for Absolute Beginners</h1>
+      <p class="subtitle">
+        Learn 3D modeling and animation at your own pace. Choose how you'd like
+        to explore the documentation.
+      </p>
+
+      <div class="button-group">
+        <a href="/docs/introduction/" class="btn btn-starlight">
+          <span class="btn-text">Standard Docs</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="/custom-ui/introduction/" class="btn btn-custom">
+          <span class="btn-text">Interactive UI</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+
+      <p class="footer">
+        Both views use the same content. Pick whichever feels right.
+      </p>
+    </div>
+  </body>
+</html>

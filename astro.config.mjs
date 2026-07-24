@@ -10,13 +10,14 @@ export default defineConfig({
       starlight({
           title: 'Blender for Absolute Beginners',
           sidebar: [
+              { label: 'Introduction', link: '/docs/introduction/' },
               {
                   label: 'Examples',
-                  items: [{ autogenerate: { directory: 'examples' }   }],
+                  items: [{ autogenerate: { directory: 'docs/examples' } }],
               },
               {
                   label: 'Fundamentals',
-                  items: [{ autogenerate: { directory: 'fundamentals' } }],
+                  items: [{ autogenerate: { directory: 'docs/fundamentals' } }],
               },
           ],
       }),

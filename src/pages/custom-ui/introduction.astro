@@ -1,0 +1,475 @@
+---
+import LinkedImage from '../../components/LinkedImage.astro';
+import inspiration1 from '../../assets/final-blender.png';
+import inspiration2 from '../../assets/blender-chatgpt-nanobanana.png';
+import inspiration3 from '../../assets/chatgpt-use-google-stich.png';
+import blenderneo from '../../assets/blender-neobrutalism.png';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interactive — Blender for Absolute Beginners</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        color: #f1f5f9;
+        min-height: 100vh;
+        line-height: 1.7;
+      }
+
+      /* ── Nav ─────────────────────────────── */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(16px);
+        background: rgba(15, 23, 42, 0.85);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        padding: 0.75rem 1.5rem;
+      }
+      .nav-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .nav-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-back:hover { color: #f1f5f9; }
+      .nav-arrow { transition: transform 0.2s; }
+      .nav-back:hover .nav-arrow { transform: translateX(-3px); }
+      .nav-title {
+        font-weight: 700;
+        font-size: 1rem;
+        background: linear-gradient(135deg, #f59e0b, #f97316);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .nav-mode {
+        margin-left: auto;
+        font-size: 0.8rem;
+        color: #6366f1;
+        background: rgba(99, 102, 241, 0.12);
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      /* ── Hero ───────────────────────────── */
+      .hero {
+        text-align: center;
+        padding: 4rem 1.5rem 3rem;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .hero-badge {
+        display: inline-block;
+        background: rgba(99, 102, 241, 0.15);
+        color: #a5b4fc;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.3rem 1rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, #f59e0b, #f97316);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-desc {
+        font-size: 1.1rem;
+        color: #94a3b8;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      /* ── Main Content ──────────────────── */
+      .content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5rem 5rem;
+      }
+
+      /* ── Section cards ─────────────────── */
+      section {
+        margin-bottom: 3rem;
+      }
+      section h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      section h2 .icon {
+        font-size: 1.4rem;
+      }
+
+      /* ── Keyboard shortcut grid ────────── */
+      .shortcut-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      @media (min-width: 640px) {
+        .shortcut-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      .shortcut-card {
+        background: rgba(30, 41, 59, 0.6);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 0.85rem;
+        padding: 1rem 1.25rem;
+        cursor: default;
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .shortcut-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 0.85rem;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(99, 102, 241, 0.04));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .shortcut-card:hover {
+        border-color: rgba(99, 102, 241, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(59, 130, 246, 0.15);
+      }
+      .shortcut-card:hover::before { opacity: 1; }
+
+      .shortcut-card kbd {
+        display: inline-block;
+        background: rgba(99, 102, 241, 0.2);
+        color: #a5b4fc;
+        font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 0.2em 0.6em;
+        border-radius: 0.4rem;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        letter-spacing: 0.02em;
+      }
+      .shortcut-card .desc {
+        display: block;
+        margin-top: 0.4rem;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        position: relative;
+        z-index: 1;
+      }
+      .shortcut-card .hint {
+        display: block;
+        margin-top: 0.15rem;
+        color: #64748b;
+        font-size: 0.8rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── 3D Modelling Steps ─────────────── */
+      .steps {
+        counter-reset: step;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .step {
+        counter-increment: step;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 0.85rem;
+        padding: 1.25rem;
+        transition: all 0.25s;
+        cursor: pointer;
+        outline: none;
+      }
+      .step:focus-visible {
+        border-color: rgba(99, 102, 241, 0.5);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+      }
+      .step:hover {
+        border-color: rgba(16, 185, 129, 0.35);
+        box-shadow: 0 4px 18px rgba(16, 185, 129, 0.1);
+      }
+      .step-num {
+        flex-shrink: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        font-weight: 800;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .step-num::after {
+        content: "✓";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #10b981, #059669);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .step.completed .step-num::after { opacity: 1; transform: scale(1); }
+      .step.completed .step-num { color: transparent; }
+      .step-content h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .step-content p { color: #94a3b8; font-size: 0.9rem; }
+
+      /* ── Pie menus section ──────────────── */
+      .pie-menu-intro {
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 0.85rem;
+        padding: 1.5rem;
+        color: #94a3b8;
+        text-align: center;
+      }
+      .pie-menu-intro .arrow-hint {
+        display: inline-block;
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+        animation: bounce 1.5s infinite;
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      /* ── Gallery ────────────────────────── */
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 640px) {
+        .gallery { grid-template-columns: repeat(4, 1fr); }
+      }
+      .gallery figure {
+        border-radius: 0.85rem;
+        overflow: hidden;
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        transition: all 0.3s;
+      }
+      .gallery figure:hover {
+        transform: translateY(-4px);
+        border-color: rgba(245, 158, 11, 0.4);
+        box-shadow: 0 8px 28px rgba(245, 158, 11, 0.15);
+      }
+      .gallery img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .gallery figcaption {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.8rem;
+        color: #94a3b8;
+        text-align: center;
+      }
+      .gallery a { text-decoration: none; color: inherit; }
+
+      /* ── Footer ─────────────────────────── */
+      .page-footer {
+        text-align: center;
+        padding: 2rem 1.5rem 3rem;
+        border-top: 1px solid rgba(148, 163, 184, 0.08);
+        margin-top: 2rem;
+      }
+      .page-footer a {
+        color: #6366f1;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+      .page-footer a:hover { color: #818cf8; }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-back">
+          <span class="nav-arrow">←</span> Home
+        </a>
+        <span class="nav-title">Blender for Absolute Beginners</span>
+        <span class="nav-mode">Interactive View</span>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <span class="hero-badge">Interactive Mode</span>
+      <h1>Getting Started with Blender</h1>
+      <p class="hero-desc">
+        Everything you need to begin your 3D journey — presented in a hands-on,
+        interactive format. Hover, click, and explore.
+      </p>
+    </div>
+
+    <main class="content">
+      <!-- ─── Keyboard Shortcuts ──────────── -->
+      <section>
+        <h2><span class="icon">⌨️</span> Blender Keyboard Shortcuts</h2>
+        <p style="color:#94a3b8; margin-bottom:1.25rem; font-size:0.95rem;">
+          Master these essential shortcuts to work faster. Hover each card for
+          details.
+        </p>
+
+        <div class="shortcut-grid">
+          <div class="shortcut-card">
+            <kbd>Shift + A</kbd>
+            <span class="desc">Add Menu</span>
+            <span class="hint">The most important shortcut — brings up the Add menu to create objects</span>
+          </div>
+
+          <div class="shortcut-card">
+            <kbd>Ctrl + A</kbd>
+            <span class="desc">Apply</span>
+            <span class="hint">Apply rotation &amp; scale. Resets scale to 1 for further operations</span>
+          </div>
+
+          <div class="shortcut-card">
+            <kbd>TAB</kbd>
+            <span class="desc">Toggle Edit Mode</span>
+            <span class="hint">Switch between Object Mode and Edit Mode</span>
+          </div>
+
+          <div class="shortcut-card">
+            <kbd>G</kbd>
+            <span class="desc">Grab (Move)</span>
+            <span class="hint">Then press X, Y, or Z to constrain movement to an axis</span>
+          </div>
+
+          <div class="shortcut-card">
+            <kbd>R</kbd>
+            <span class="desc">Rotate</span>
+            <span class="hint">Then press X, Y, or Z to constrain rotation to an axis</span>
+          </div>
+
+          <div class="shortcut-card">
+            <kbd>S</kbd>
+            <span class="desc">Scale</span>
+            <span class="hint">Then press X, Y, or Z to constrain scaling to an axis</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Pie Menus ──────────────────── -->
+      <section>
+        <h2><span class="icon">🥧</span> Blender Pie Menus</h2>
+        <div class="pie-menu-intro">
+          <p>
+            Blender's circular pop-up menus are called <strong>Pie Menus</strong>.
+            They're designed for speed — no clicking required. Just press the
+            hotkey, flick your cursor, and release.
+          </p>
+          <span class="arrow-hint">↑</span>
+          <p style="font-size:0.85rem;">
+            <strong>Pro tip:</strong> Press and hold, flick toward your choice, release the key.
+          </p>
+        </div>
+      </section>
+
+      <!-- ─── 3D Modelling Steps ─────────── -->
+      <section>
+        <h2><span class="icon">🧊</span> 3D Modelling Basics</h2>
+        <p style="color:#94a3b8; margin-bottom:1.25rem; font-size:0.95rem;">
+          Click each step to mark it complete as you follow along.
+        </p>
+
+        <ol class="steps">
+          <li class="step" tabindex="0" role="button" aria-pressed="false"
+              onclick="this.classList.toggle('completed'); this.setAttribute('aria-pressed', this.classList.contains('completed'))"
+              onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
+            <span class="step-num">1</span>
+            <div class="step-content">
+              <h3>Start with a base shape</h3>
+              <p>Pick from a plane, cube, cylinder, or UV sphere — these are the building blocks of all 3D models.</p>
+            </div>
+          </li>
+          <li class="step" tabindex="0" role="button" aria-pressed="false"
+              onclick="this.classList.toggle('completed'); this.setAttribute('aria-pressed', this.classList.contains('completed'))"
+              onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
+            <span class="step-num">2</span>
+            <div class="step-content">
+              <h3>Scale with <kbd>S</kbd></h3>
+              <p>Press S to scale your shape. Add X, Y, or Z to constrain. Proportional editing helps with organic shapes.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ─── Inspiration Gallery ────────── -->
+      <section>
+        <h2><span class="icon">✨</span> Inspiration</h2>
+        <p style="color:#94a3b8; margin-bottom:1.25rem; font-size:0.95rem;">
+          Ideas for what the Blender docs could look like. Click any image to
+          view full size.
+        </p>
+
+        <div class="gallery">
+          <LinkedImage src={inspiration1} alt="Final Blender render" />
+          <LinkedImage src={inspiration2} alt="Blender ChatGPT Nanobanana" />
+          <LinkedImage src={inspiration3} alt="ChatGPT Google Stitch" />
+          <LinkedImage src={blenderneo} alt="Blender neobrutalism" />
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>
+        Want a more traditional layout?
+        <a href="/docs/introduction/"> Switch to Standard Docs →</a>
+      </p>
+    </footer>
+  </body>
+</html>
