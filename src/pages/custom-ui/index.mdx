@@ -25,45 +25,88 @@ import CubeViewport from '../../components/blender/CubeViewport.astro';
 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: none !important; padding: 0 40px; pointer-events: none; z-index: 10;">
   
   {/* Left Panel - Setup & Modes */}
-  <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 280px; pointer-events: auto;">
+  <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 300px; pointer-events: auto;">
     <div class="shortcut-card">
       <kbd>Shift + A</kbd>
       <span class="desc">Add Menu</span>
-      <span class="hint">The most important shortcut — brings up the Add menu to create objects</span>
+      <span class="hint">The most important shortcut — brings up the Add menu to create objects.</span>
     </div>
     
     <div class="shortcut-card">
       <kbd>Ctrl + A</kbd>
       <span class="desc">Apply</span>
-      <span class="hint">Apply rotation & scale. Resets scale to 1 for further operations</span>
+      <span class="hint">Apply rotation & scale. Resets scale to 1 for accurate modifiers.</span>
     </div>
 
     <div class="shortcut-card">
       <kbd>TAB</kbd>
       <span class="desc">Toggle Edit Mode</span>
-      <span class="hint">Switch between Object Mode and Edit Mode</span>
+      <span class="hint">Switch between Object Mode and Edit Mode.</span>
     </div>
   </div>
 
-  {/* Right Panel - Transformations */}
-  <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 280px; pointer-events: auto;">
+  {/* Right Panel - Transformations & Variants */}
+  <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 300px; pointer-events: auto;">
+    
+    {/* GRAB */}
     <div class="shortcut-card">
       <kbd>G</kbd>
       <span class="desc">Grab (Move)</span>
-      <span class="hint">Then press X, Y, or Z to constrain movement to an axis</span>
+      <div style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.4rem;">
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">X</kbd> 
+          <span>Move exactly on X direction</span>
+        </div>
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">Y</kbd> <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">50</kbd> 
+          <span>Move exactly 50 units on Y</span>
+        </div>
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">Shift + Z</kbd> 
+          <span>Move on XY plane (Locks Z)</span>
+        </div>
+      </div>
     </div>
 
+    {/* ROTATE */}
     <div class="shortcut-card">
       <kbd>R</kbd>
       <span class="desc">Rotate</span>
-      <span class="hint">Then press X, Y, or Z to constrain rotation to an axis</span>
+      <div style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.4rem;">
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">Z</kbd> 
+          <span>Rotate around Z axis (like a top)</span>
+        </div>
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">X</kbd> <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">90</kbd> 
+          <span>Rotate exactly 90° on X</span>
+        </div>
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">R</kbd> 
+          <span>Trackball free rotation</span>
+        </div>
+      </div>
     </div>
     
+    {/* SCALE */}
     <div class="shortcut-card">
       <kbd>S</kbd>
       <span class="desc">Scale</span>
-      <span class="hint">Then press X, Y, or Z to constrain scaling to an axis</span>
+      <div style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.4rem;">
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">Z</kbd> 
+          <span>Scale height only</span>
+        </div>
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">2</kbd> 
+          <span>Double the overall size</span>
+        </div>
+        <div class="hint" style="display: flex; align-items: center; gap: 0.4rem; margin: 0;">
+          <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">X</kbd> <kbd style="font-size: 0.65rem; padding: 0.1rem 0.3rem;">-1</kbd> 
+          <span>Mirror / Invert along X axis</span>
+        </div>
+      </div>
     </div>
-  </div>
 
+  </div>
 </div>
