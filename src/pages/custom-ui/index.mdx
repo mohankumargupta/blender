@@ -3,10 +3,55 @@ layout: ../../layouts/BlenderLayout.astro
 title: Layout
 scene:
   - id: scene
-
+    name: Scene Collection
+    icon: "◈"
+    children:
+      - id: cube
+        name: Cube
+        icon: "◼"
+        selected: true
+stats:
+  verts: 8
+  edges: 12
+  faces: 6
+  objects: 3
 ---
 
 import CubeViewport from '../../components/blender/CubeViewport.astro';
 
 <CubeViewport />
 
+{/* Flexbox Dashboard Wrapper */}
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: none !important; padding: 0 40px; pointer-events: none; z-index: 10;">
+  
+  {/* Left Panel - Shortcuts */}
+  <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 280px; pointer-events: auto;">
+    <div class="shortcut-card">
+      <kbd>Shift + A</kbd>
+      <span class="desc">Add Menu</span>
+      <span class="hint">The most important shortcut — brings up the Add menu to create objects</span>
+    </div>
+    
+    <div class="shortcut-card">
+      <kbd>Ctrl + A</kbd>
+      <span class="desc">Apply</span>
+      <span class="hint">Apply rotation & scale. Resets scale to 1 for further operations</span>
+    </div>
+  </div>
+
+  {/* Right Panel - Shortcuts */}
+  <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 280px; pointer-events: auto;">
+    <div class="shortcut-card">
+      <kbd>TAB</kbd>
+      <span class="desc">Toggle Edit Mode</span>
+      <span class="hint">Switch between Object Mode and Edit Mode</span>
+    </div>
+    
+    <div class="shortcut-card">
+      <kbd>G</kbd>
+      <span class="desc">Grab (Move)</span>
+      <span class="hint">Then press X, Y, or Z to constrain movement to an axis</span>
+    </div>
+  </div>
+
+</div>
