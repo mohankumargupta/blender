@@ -1,0 +1,110 @@
+---
+// src/components/CubeViewport.astro
+// This component renders inside <slot /> — i.e. inside the viewport area.
+// Use it in any .mdx page: <CubeViewport />
+---
+<div class="scene" id="cubeScene" data-scale="1">
+  <div class="cube-world" id="cubeWorld">
+    <div class="cube" id="cube">
+      <div class="cube-face face-front" id="faceFront">Front</div>
+      <div class="cube-face face-back">Back</div>
+      <div class="cube-face face-right">R</div>
+      <div class="cube-face face-left">L</div>
+      <div class="cube-face face-top">Top</div>
+      <div class="cube-face face-bottom">Bot</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Per-instance viewport orbit — only runs when this component is on the page
+  let rotX = -20;
+  let rotY = -30;
+  let dragging = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  const vp = document.getElementById('viewport');
+  const world = document.getElementById('cubeWorld');
+  const scene = document.getElementById('cubeScene');
+  if (!vp || !world || !scene) throw new Error('Viewport elements missing');
+
+  function updateCube() {
+    const scale = parseFloat(scene.dataset.scale ?? '1');
+    world.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`;
+  }
+
+  vp.addEventListener('mousedown', (e) => {
+    // Only orbit if clicking on viewport background, not on content
+    if ((e.target as HTMLElement).closest('.viewport-content')) return;
+    dragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    vp.classList.add('grabbing');
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    rotY += (e.clientX - lastX) * 0.5;
+    rotX -= (e.clientY - lastY) * 0.5;
+    rotX = Math.max(-89, Math.min(89, rotX));
+    lastX = e.clientX;
+    lastY = e.clientY;
+    updateCube();
+  });
+
+  window.addEventListener('mouseup', () => {
+    dragging = false;
+    vp.classList.remove('grabbing');
+  });
+
+  // Touch support
+  vp.addEventListener(
+    'touchstart',
+    (e) => {
+      if ((e.target as HTMLElement).closest('.viewport-content')) return;
+      if (e.touches.length === 1) {
+        dragging = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    },
+    { passive: true }
+  );
+
+  vp.addEventListener(
+    'touchmove',
+    (e) => {
+      if (!dragging || e.touches.length !== 1) return;
+      rotY += (e.touches[0].clientX - lastX) * 0.5;
+      rotX -= (e.touches[0].clientY - lastY) * 0.5;
+      rotX = Math.max(-89, Math.min(89, rotX));
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+      updateCube();
+    },
+    { passive: true }
+  );
+
+  vp.addEventListener('touchend', () => {
+    dragging = false;
+  });
+
+  // Zoom
+  vp.addEventListener(
+    'wheel',
+    (e) => {
+      if ((e.target as HTMLElement).closest('.viewport-content')) return;
+      e.preventDefault();
+      const scale = Math.max(
+        0.4,
+        Math.min(2, parseFloat(scene.dataset.scale ?? '1') - e.deltaY * 0.001)
+      );
+      scene.dataset.scale = String(scale);
+      updateCube();
+    },
+    { passive: false }
+  );
+
+  updateCube();
+</script>

@@ -1,0 +1,50 @@
+---
+import '../styles/blender.css';
+import TopBar from '../components/blender/TopBar.astro';
+import Toolbar from '../components/blender/Toolbar.astro';
+import Outliner from '../components/blender/Outliner.astro';
+import PropertiesPanel from '../components/blender/PropertiesPanel.astro';
+import StatusBar from '../components/blender/StatusBar.astro';
+
+const { frontmatter } = Astro.props;
+const { title, scene, stats } = frontmatter || {};
+
+const sidebarEntries = [
+  { label: 'Layout', link: '/custom-ui/' },
+  { label: 'Modeling', link: '/custom-ui/modelling/' },
+  { label: 'Shading', link: '/custom-ui/shading/' },
+  { label: 'Render', link: '/custom-ui/render/' },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title ? `${title} - Blender UI` : 'Blender UI'}</title>
+  </head>
+  <body>
+    <div id="app">
+      <TopBar sidebarEntries={sidebarEntries} />
+      <Toolbar />
+      
+      <div class="viewport" id="viewport">
+        <div class="viewport-grid"></div>
+        <div class="viewport-label">{title || 'User Perspective'}</div>
+        <div class="viewport-hint">Drag to orbit<br>Scroll to zoom</div>
+        
+        <!-- MDX docs render here inside the viewport! -->
+        <div class="viewport-content prose">
+          <slot />
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <Outliner tree={scene || []} />
+        <PropertiesPanel />
+      </div>
+
+      <StatusBar stats={stats || {}} />
+    </div>
+    <script src="../scripts/blender-ui.ts"></script>
+  </body>
+</html>

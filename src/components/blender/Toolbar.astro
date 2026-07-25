@@ -1,0 +1,36 @@
+---
+const tools = [
+  { id: 'select', label: 'Select', icon: '⬚', color: '' },
+  { id: 'move', label: 'Move', icon: '✛', color: 'move' },
+  { id: 'rotate', label: 'Rotate', icon: '⟳', color: 'rotate' },
+  { id: 'scale', label: 'Scale', icon: '⤢', color: 'scale' },
+];
+const tools2 = [
+  { id: 'annotate', label: 'Annotate', icon: '✎', color: 'annotate' },
+  { id: 'measure', label: 'Measure', icon: '↔', color: '' },
+];
+---
+
+<div class="toolbar">
+  {tools.map((t) => (
+    <button
+      class:list={['tool-btn', { active: t.id === 'select' }]}
+      data-tool={t.id}
+      data-color={t.color}
+      title={t.label}
+    >
+      {t.icon}
+    </button>
+  ))}
+  <div class="tool-divider" />
+  {tools2.map((t) => (
+    <button
+      class="tool-btn"
+      data-tool={t.id}
+      data-color={t.color}
+      title={t.label}
+    >
+      {t.icon}
+    </button>
+  ))}
+</div>

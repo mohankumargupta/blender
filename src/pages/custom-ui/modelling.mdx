@@ -1,0 +1,42 @@
+---
+# src/content/docs/modeling.mdx
+title: Modeling
+scene:
+  - id: scene
+    name: Scene Collection
+    icon: "◈"
+    children:
+      - id: suzanne
+        name: Suzanne
+        icon: "◆"
+        selected: true
+        children:
+          - id: mat
+            name: Material
+            icon: "◑"
+          - id: armature
+            name: Armature
+            icon: "⊖"
+      - id: light
+        name: Light
+        icon: "✦"
+      - id: cam
+        name: Camera
+        icon: "▷"
+stats:
+  verts: 506
+  edges: 1008
+  faces: 500
+  objects: 3
+---
+
+## Modeling Workspace
+
+This page has a different scene tree (Suzanne instead of Cube) and different
+mesh stats in the status bar — all driven from **frontmatter**.
+
+The 3D viewport area below can hold either interactive scenes or documentation
+content, depending on what each page needs.
+
+> The outliner, status bar, and properties panel all react to the page's
+> frontmatter data — no hardcoded values in the layout.

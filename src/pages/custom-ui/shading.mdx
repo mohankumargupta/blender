@@ -1,0 +1,36 @@
+---
+# src/content/docs/shading.mdx
+title: Shading
+scene:
+  - id: scene
+    name: Scene Collection
+    icon: "◈"
+    children:
+      - id: cube
+        name: Cube
+        icon: "◼"
+        selected: true
+        children:
+          - id: mat
+            name: Glossy Material
+            icon: "◑"
+          - id: mat2
+            name: Emission
+            icon: "◑"
+      - id: world
+        name: World
+        icon: "◐"
+stats:
+  verts: 8
+  edges: 12
+  faces: 6
+  objects: 1
+---
+
+## Shading Workspace
+
+Switch to the **Material** tab in the Properties panel to see the color
+swatch. Click it to cycle through materials.
+
+The frontmatter defines two materials under the Cube — the outliner
+reflects this hierarchy automatically.

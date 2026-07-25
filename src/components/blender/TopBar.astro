@@ -1,0 +1,42 @@
+---
+interface Props {
+  sidebarEntries: Array<{ label: string; link?: string }>;
+}
+const { sidebarEntries } = Astro.props;
+
+// Determine current page for active tab
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<div class="topbar">
+  <div class="topbar-logo">B</div>
+  <div class="topbar-menu">
+    <button data-menu="file">File</button>
+    <button data-menu="edit">Edit</button>
+    <button data-menu="render">Render</button>
+    <button data-menu="window">Window</button>
+    <button data-menu="help">Help</button>
+  </div>
+  <div class="workspace-tabs">
+    {sidebarEntries.map((entry) => {
+      const href = entry.link ?? '#';
+      const isActive = href === currentPath || (href !== '/' && currentPath.startsWith(href));
+      return (
+        <a
+          href={href}
+          class:list={['workspace-tab', { active: isActive }]}
+          data-tab={entry.label.toLowerCase()}
+        >
+          {entry.label}
+        </a>
+      );
+    })}
+  </div>
+  <div class="topbar-mode">
+    <select class="mode-select" id="modeSelect">
+      <option>Object Mode</option>
+      <option>Edit Mode</option>
+      <option>Sculpt Mode</option>
+    </select>
+  </div>
+</div>

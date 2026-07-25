@@ -1,0 +1,17 @@
+---
+// src/components/blender/PropertiesPanel.astro
+---
+
+<div class="properties">
+  <div class="panel-header">
+    <span class="dot"></span> Properties
+  </div>
+  <div class="prop-tabs" id="propTabs">
+    <button class="prop-tab active" data-ptab="object" title="Object">▣</button>
+    <button class="prop-tab" data-ptab="modifier" title="Modifiers">⚡</button>
+    <button class="prop-tab" data-ptab="material" title="Material">◑</button>
+    <button class="prop-tab" data-ptab="data" title="Data">▦</button>
+    <button class="prop-tab" data-ptab="world" title="World">◐</button>
+  </div>
+  <div class="prop-body" id="propBody"></div>
+</div>

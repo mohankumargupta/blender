@@ -1,0 +1,17 @@
+---
+interface Props {
+  stats: { verts?: number; edges?: number; faces?: number; objects?: number };
+}
+const { stats } = Astro.props;
+---
+
+<div class="statusbar">
+  <div class="stat">Verts <span class="val">{stats.verts ?? 0}</span></div>
+  <div class="stat">Edges <span class="val">{stats.edges ?? 0}</span></div>
+  <div class="stat">Faces <span class="val">{stats.faces ?? 0}</span></div>
+  <div class="stat">Objects <span class="val">{stats.objects ?? 0}</span></div>
+  <div class="spacer"></div>
+  <div class="stat">Tool: <span class="val" id="statTool">Select</span></div>
+  <div class="stat">Sel: <span class="val" id="statSel">—</span></div>
+  <div class="version">v4.0 · Neo</div>
+</div>

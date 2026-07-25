@@ -1,0 +1,22 @@
+name: Scene Collection
+    icon: "◈"
+    children:
+      - id: cube
+        name: Cube
+        icon: "◼"
+        selected: true
+        children:
+          - id: mat
+            name: Material
+            icon: "◑"
+      - id: light
+        name: Light
+        icon: "✦"
+      - id: cam
+        name: Camera
+        icon: "▷"
+stats:
+  verts: 8
+  edges: 12
+  faces: 6
+  objects: 3 

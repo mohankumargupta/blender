@@ -1,0 +1,48 @@
+---
+interface SceneNode {
+  id: string;
+  name: string;
+  icon?: string;
+  visible?: boolean;
+  selected?: boolean;
+  children?: SceneNode[];
+}
+
+interface Props {
+  tree: SceneNode[];
+}
+const { tree } = Astro.props;
+
+// Server-render the initial tree state
+function renderTree(items: SceneNode[], depth = 0): string {
+  return items
+    .map((item) => {
+      const hasChildren = item.children && item.children.length > 0;
+      const sel = item.selected ? ' selected' : '';
+      const vis = item.visible !== false ? '◉' : '◯';
+      const childrenHTML =
+        hasChildren
+          ? `<div class="tree-children">${renderTree(item.children, depth + 1)}</div>`
+          : '';
+      return `
+        <div>
+          <div class="tree-item${sel}" data-id="${item.id}">
+            <span class="toggle">${hasChildren ? '▼' : ''}</span>
+            <span class="icon">${item.icon ?? '●'}</span>
+            <span class="name">${item.name}</span>
+            <span class="vis">${vis}</span>
+          </div>
+          ${childrenHTML}
+        </div>
+      `;
+    })
+    .join('');
+}
+---
+
+<div class="outliner">
+  <div class="panel-header">
+    <span class="dot"></span> Outliner
+  </div>
+  <div class="outliner-tree" id="outlinerTree" set:html={renderTree(tree)} />
+</div>
