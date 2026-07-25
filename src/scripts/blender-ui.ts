@@ -34,4 +34,37 @@ document.addEventListener('DOMContentLoaded', () => {
       toast((btn as HTMLElement).dataset.menu || 'Menu');
     });
   });
+
+  // Mode Select (Dropdown change)
+  const modeSelect = document.getElementById('modeSelect') as HTMLSelectElement;
+  if (modeSelect) {
+    modeSelect.addEventListener('change', () => {
+      toast('Mode: ' + modeSelect.value);
+    });
+  }
+
+  // Keyboard Shortcuts
+  document.addEventListener('keydown', (e) => {
+    // Check if the user is typing in an input field (like the properties panel)
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      return; 
+    }
+
+    // TAB - Toggle Edit/Object Mode
+    if (e.key === 'Tab') {
+      e.preventDefault(); // Prevents the browser from just selecting the next button
+      
+      if (modeSelect) {
+        if (modeSelect.value === 'Object Mode') {
+          modeSelect.value = 'Edit Mode';
+        } else {
+          modeSelect.value = 'Object Mode';
+        }
+        
+        // Trigger the visual toast
+        toast('Mode: ' + modeSelect.value);
+      }
+    }
+  });  
+
 });
