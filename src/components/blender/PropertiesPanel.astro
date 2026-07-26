@@ -13,5 +13,111 @@
     <button class="prop-tab" data-ptab="data" title="Data">▦</button>
     <button class="prop-tab" data-ptab="world" title="World">◐</button>
   </div>
-  <div class="prop-body" id="propBody"></div>
+  <div class="prop-body" id="propBody">
+    
+    <!-- Object Tab -->
+    <div class="prop-content active" id="content-object">
+      <div class="prop-section">
+        <div class="prop-section-title">Transform <span class="chevron">▼</span></div>
+        <div class="prop-section-body">
+          <div class="prop-row">
+            <span class="prop-label">Loc</span>
+            <div class="prop-vec">
+              <input class="prop-input x" type="text" value="0.00" />
+              <input class="prop-input y" type="text" value="0.00" />
+              <input class="prop-input z" type="text" value="0.00" />
+            </div>
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Rot</span>
+            <div class="prop-vec">
+              <input class="prop-input x" type="text" value="0°" />
+              <input class="prop-input y" type="text" value="0°" />
+              <input class="prop-input z" type="text" value="0°" />
+            </div>
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Scale</span>
+            <div class="prop-vec">
+              <input class="prop-input x" type="text" value="1.00" />
+              <input class="prop-input y" type="text" value="1.00" />
+              <input class="prop-input z" type="text" value="1.00" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="prop-section">
+        <div class="prop-section-title">Delta Transform <span class="chevron">▶</span></div>
+      </div>
+    </div>
+
+    <!-- Modifier Tab -->
+    <div class="prop-content" id="content-modifier" style="display: none;">
+      <div class="prop-section">
+        <div class="prop-section-title">Modifiers <span class="chevron">▼</span></div>
+        <div class="prop-section-body">
+          <div style="font-size:11px;font-weight:700;opacity:0.5;text-align:center;padding:8px;">No modifiers added</div>
+          <button class="tool-btn" style="width:100%;height:28px;font-size:11px;" id="addMod">+ Add Modifier</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Material Tab -->
+    <div class="prop-content" id="content-material" style="display: none;">
+      <div class="prop-section">
+        <div class="prop-section-title">Surface <span class="chevron">▼</span></div>
+        <div class="prop-section-body">
+          <div class="prop-color-row">
+            <div class="color-swatch" id="matSwatch" style="background:#ff7a00;" data-color-idx="0"></div>
+            <div class="prop-color-info">
+              <div class="label">Base Color</div>
+              <div class="hex">#FF7A00</div>
+            </div>
+          </div>
+          <div class="prop-row" style="margin-top:8px;">
+            <span class="prop-label">Rough</span>
+            <input class="prop-input" type="text" value="0.40" />
+          </div>
+          <div class="prop-row">
+            <span class="prop-label">Metal</span>
+            <input class="prop-input" type="text" value="0.00" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Tab -->
+    <div class="prop-content" id="content-data" style="display: none;">
+      <div class="prop-section">
+        <div class="prop-section-title">Mesh <span class="chevron">▼</span></div>
+        <div class="prop-section-body">
+          <div class="prop-row"><span class="prop-label">Verts</span><input class="prop-input" type="text" value="8" readonly /></div>
+          <div class="prop-row"><span class="prop-label">Edges</span><input class="prop-input" type="text" value="12" readonly /></div>
+          <div class="prop-row"><span class="prop-label">Faces</span><input class="prop-input" type="text" value="6" readonly /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- World Tab -->
+    <div class="prop-content" id="content-world" style="display: none;">
+      <div class="prop-section">
+        <div class="prop-section-title">World <span class="chevron">▼</span></div>
+        <div class="prop-section-body">
+          <div class="prop-color-row">
+            <div class="color-swatch" style="background:#2a2a2a;"></div>
+            <div class="prop-color-info">
+              <div class="label">Background</div>
+              <div class="hex">#2A2A2A</div>
+            </div>
+          </div>
+          <div class="prop-row" style="margin-top:8px;">
+            <span class="prop-label">Strength</span>
+            <input class="prop-input" type="text" value="1.00" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
+
