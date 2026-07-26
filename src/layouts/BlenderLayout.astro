@@ -29,8 +29,45 @@ const sidebarEntries = [
       <Toolbar />
       
       <div class="viewport" id="viewport">
+        <!-- SECONDARY MENU (VIEWPORT HEADER) -->
+        <div class="viewport-header">
+          <span class="drag-handle" title="Split window">⌖</span>
+          
+          <select class="mode-select" id="modeSelect">
+            <option>Object Mode</option>
+            <option>Edit Mode</option>
+            <option>Sculpt Mode</option>
+          </select>
+
+          <div class="vp-menu">
+            <button>View</button>
+            <button>Select</button>
+            <button>Add</button>
+            <button>Object</button>
+          </div>
+
+          <div class="vp-right">
+            <button class="vp-icon-btn" title="Proportional Editing">◎</button>
+            
+            <div class="vp-divider"></div>
+            
+            <div class="shading-group">
+              <button class="vp-icon-btn" title="Wireframe">⭘</button>
+              <button class="vp-icon-btn active" title="Solid">⬤</button>
+              <button class="vp-icon-btn" title="Material Preview">◑</button>
+              <button class="vp-icon-btn" title="Rendered">🌑</button>
+            </div>
+          </div>
+          
+          <span class="drag-handle" title="Split window">⌖</span>
+        </div>
+
         <div class="viewport-grid"></div>
-        <div class="viewport-label">{title || 'User Perspective'}</div>
+        <div class="viewport-label">{          
+          title === 'Layout' 
+            ? 'Press Help Menu for other keyboard shortcuts' 
+            : (title || 'User Perspective')
+          }</div>
         <div class="viewport-hint">Drag to orbit<br>Scroll to zoom</div>
         
         <!-- MDX docs render here inside the viewport! -->
