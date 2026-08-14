@@ -1,15 +1,15 @@
 ---
 title: Pie Menus
-description: Complete cheat sheet for Blender's pie menus — circular radial menus activated by hotkeys. Designed for speed: press the key, flick toward your choice, release. Essential for trackpad users without a numpad.
+description: Blender circular radial pie menus
 ---
 
 In Blender, **pie menus** are circular pop-up menus that appear at your cursor when you press a hotkey. They're designed for speed — you don't click; you **press the hotkey, flick your trackpad/mouse in the direction of the option, and release the key**. The gesture becomes muscle memory.
 
 This page is a complete reference for the most important pie menus, organized by how often you'll use them. Each entry shows the default key, what the menu does, and a visual guide to the 8 pie slices (N, NE, E, SE, S, SW, W, NW).
 
----
 
-## ��� Top-Tier: Use Constantly
+
+## Top-Tier: Use Constantly
 
 These are the menus you'll hit dozens of times per session. Learn these first.
 
@@ -26,7 +26,6 @@ These are the menus you'll hit dozens of times per session. Learn these first.
 
 > **Pro tip:** Hold `Z` and flick — don't click. Your hand stays on the keyboard.
 
----
 
 ### `~` (Tilde / Grave Accent) — View Pie Menu
 **Essential for trackpad / no-numpad users.** Replaces numpad view shortcuts.
@@ -44,7 +43,7 @@ These are the menus you'll hit dozens of times per session. Learn these first.
 
 > **Memory aid:** The pie layout mirrors the compass. Top of pie = Top view. Right of pie = Right view (but mapped to West key — Blender's internal logic).
 
----
+
 
 ### `.` (Period) — Pivot Point Pie Menu
 Changes the **center of rotation/scaling**. Critical for precise edits.
@@ -59,7 +58,7 @@ Changes the **center of rotation/scaling**. Critical for precise edits.
 
 > **Beginner workflow:** Place 3D Cursor (`Shift+RightClick`) → `.` → flick NE (3D Cursor) → now `R`/`S` rotates/scales around that exact point.
 
----
+
 
 ### `,` (Comma) — Transform Orientation Pie Menu
 Changes the **axes** your transforms (G/R/S) operate in.
@@ -75,9 +74,9 @@ Changes the **axes** your transforms (G/R/S) operate in.
 
 > **Most common:** `,` → flick E (**Normal**) in Edit Mode to extrude/scale along face normals.
 
----
 
-## ��� High-Value: Modeling & Selection
+
+## High-Value: Modeling & Selection
 
 ### `Shift + S` — Snap Pie Menu
 **Precision placement.** Snaps selection ↔ 3D Cursor, or selection ↔ grid.
@@ -94,7 +93,7 @@ Changes the **axes** your transforms (G/R/S) operate in.
 
 > **Daily driver:** `Shift+S` → E (**Cursor to Selected**) → `.` → NE (**Pivot: 3D Cursor**) → now rotate around that exact spot.
 
----
+
 
 ### `Ctrl + Tab` (Edit Mode) — Mesh Selection Mode Pie
 Switch between **Vertex / Edge / Face** select mode instantly.
@@ -129,16 +128,16 @@ Changes the **falloff curve** when Proportional Editing (`O` to toggle on/off) i
 
 > **Workflow:** `O` (toggle proportional on) → `G` → move → scroll wheel to adjust radius → `O` (pie) to change falloff shape mid-drag.
 
----
 
-## ������ Display & Viewport
+
+##  Display & Viewport
 
 ### `Alt + Z` — X-Ray Toggle
 **Not a pie by default**, but can be configured as one. Toggles "see-through" mode in Solid shading — essential for selecting hidden vertices/edges/faces.
 
 > **Enable as pie:** Preferences → Keymap → 3D View → View → Toggle X-Ray → change to "Pie Menu" type.
 
----
+
 
 ### `Shift + Spacebar` — Tools Pie Menu (Toolbar at Cursor)
 Pops up the **left-side toolbar** right at your cursor. No more dragging trackpad across the screen.
@@ -156,9 +155,9 @@ Pops up the **left-side toolbar** right at your cursor. No more dragging trackpa
 
 > **Trackpad saver:** `Shift+Space` → flick S → you're in Move tool instantly.
 
----
 
-## ��� Animation & Mode Switching
+
+## Animation & Mode Switching
 
 ### `Ctrl + Tab` (Object Mode) — Mode Pie Menu
 Switch **Object / Edit / Sculpt / Vertex Paint / Weight Paint / Texture Paint** modes.
@@ -175,21 +174,21 @@ Switch **Object / Edit / Sculpt / Vertex Paint / Weight Paint / Texture Paint** 
 
 > **Fastest mode switch:** `Ctrl+Tab` → flick NE → Edit Mode. No menus, no tabs.
 
----
 
-## ��� Lesser-Known but Useful
+
+## Lesser-Known but Useful
 
 ### `Shift + A` — Add Menu (Pie-able)
 The **most important shortcut** (`Shift+A`) opens the Add menu. Can be used as a pie — flick toward the primitive you want (Mesh → Cube, UV Sphere, etc.).
 
 > **Enable:** Preferences → Keymap → 3D View → Add → Mesh → change to Pie Menu.
 
----
+
 
 ### `Shift + ` (Backtick, same key as ~) — Walk/Fly Navigation Pie
 First-person navigation modes (Walk / Fly) with WASD + mouse look.
 
----
+
 
 ## ��� Quick Reference Card (Print-Friendly)
 
@@ -206,9 +205,9 @@ First-person navigation modes (Walk / Fly) with WASD + mouse look.
 | `Shift+Space` | **Tools at Cursor** (Move/Rotate/Scale/Select) | **Workflow** |
 | `Ctrl+Tab` (Obj) | **Mode Switch** (Object/Edit/Sculpt/Paint) | **Workflow** |
 
----
 
-## ��� Trackpad Mastery: "Flick Select" Technique
+
+## Trackpad Mastery: "Flick Select" Technique
 
 1. **Press and hold** the shortcut key (e.g., `Z`).
 2. **Flick** your finger on the trackpad toward the desired slice — don't drag slowly; a quick directional swipe is enough.
@@ -218,9 +217,9 @@ The menu disappears and the action executes. No click required.
 
 > **Practice drill:** Open a new Blender file. `Z` → flick N (Wireframe) → `Z` → flick E (Material Preview) → `Z` → flick S (Rendered). Repeat until it's automatic.
 
----
 
-## ������ Customizing Pie Menus (Advanced)
+
+## Customizing Pie Menus (Advanced)
 
 Blender lets you **reassign any operator to a pie menu** or **create custom pies**:
 
@@ -230,9 +229,9 @@ Blender lets you **reassign any operator to a pie menu** or **create custom pies
 
 > **Idea for this site:** The interactive Blender-UI replica could include a **live pie-menu simulator** — press `Z` on the keyboard and see the pie animate at the cursor, then flick to select. This trains the muscle memory before you ever open Blender.
 
----
 
-## ��� Related Pages
+
+## Related Pages
 
 - [Keyboard Shortcuts](../index.mdx#blender-keyboard-shortcuts) — Core transform keys (G/R/S) and axis constraints
 - [3D Modelling Workflow](../index.mdx#3d-modelling) — Start with primitives, scale with S
