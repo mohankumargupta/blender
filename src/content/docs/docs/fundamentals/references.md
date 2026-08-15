@@ -5,7 +5,10 @@ description: Blender references
 
 [PBR Textures in Blender](https://www.cgbookcase.com/learn/how-to-use-pbr-textures-in-blender)
 
-[one](https://youtu.be/KMjTLE0z80k?si=nJz97_1xgdm-6wcY)
+[image texture](https://youtu.be/KMjTLE0z80k?si=nJz97_1xgdm-6wcY)
+
+color of crate #674121
+
 
 [two](https://youtu.be/6dM4tL2C6-s?si=XKWTDmIaohHzfYLL)
 
